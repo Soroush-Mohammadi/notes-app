@@ -8,7 +8,7 @@
         style="color: black"
       />
     </button>
-    <button v-if="noteChanged" @click="saveNote">
+    <button @click="saveNote" v-if="noteChanged">
       <icon icon="material-symbols:check" height="35" width="35" style="color: black" />
     </button>
   </div>
@@ -19,6 +19,7 @@ import { Icon } from '@iconify/vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
 const props = defineProps({
   noteChanged: Boolean,
 })

@@ -4,7 +4,7 @@
       <page-title-bar :title="pageTitle" />
       <search-box />
     </header>
-    <main class="my-4 flex flex-col gap-4 relative">
+    <main class="my-4 flex flex-col gap-4 relative min-h-screen">
       <RouterView />
     </main>
     <footer v-if="!hideLayout">

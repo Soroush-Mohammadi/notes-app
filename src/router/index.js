@@ -26,7 +26,7 @@ const router = createRouter({
 
     {
       path: '/notes/:id',
-      name: 'note-view',
+      name: 'noteItem',
       component: NewNotePage,
       meta: {
         hideLayout: true,

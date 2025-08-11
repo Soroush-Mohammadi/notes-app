@@ -8,7 +8,6 @@
 
 <script setup>
 import NoteItem from '../Molecules/NoteItem.vue'
-import { RouterLink } from 'vue-router'
 
 import { useNoteStore } from '@/stores/notes'
 

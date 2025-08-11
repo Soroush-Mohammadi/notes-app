@@ -1,9 +1,15 @@
 <template>
-  <task-items-wrapper :tasks="incompletedTasks" />
-  <task-items-wrapper :tasks="completedTasks" />
+  <div v-if="!foundTasks.length">
+    <task-items-wrapper :tasks="incompletedTasks" @open-task="onOpenTask" />
+    <task-items-wrapper :tasks="completedTasks" @open-task="onOpenTask" />
+  </div>
+  <div>
+    <task-items-wrapper :tasks="foundTasks" @open-task="onOpenTask" />
+  </div>
+
   <add-button @open-modal="onOpenModal" />
   <Teleport to="#app-wrapper">
-    <new-task-page v-if="modal" @close-modal="onCloseModal" />
+    <new-task-page v-if="modal" @close-modal="onCloseModal" :taskId="taskId" />
   </Teleport>
 </template>
 
@@ -13,48 +19,29 @@ import { computed, ref } from 'vue'
 import TaskItemsWrapper from '@/components/Organisms/TaskItemsWrapper.vue'
 import AddButton from '@/components/Atoms/AddButton.vue'
 import NewTaskPage from '@/components/Templates/NewTaskPage.vue'
+import { useTaskStore } from '@/stores/tasks'
 
-const incompletedTasks = computed(() => tasks.value.filter((task) => task.isCompleted == false))
-const completedTasks = computed(() => tasks.value.filter((task) => task.isCompleted == true))
+//new
 
 const modal = ref(false)
 
-const onOpenModal = () => (modal.value = true)
+const taskStore = useTaskStore()
+const incompletedTasks = computed(() => taskStore.incompletedTasks)
+const completedTasks = computed(() => taskStore.completedTasks)
+
+const taskId = ref(null)
+const onOpenModal = () => {
+  taskId.value = null
+  modal.value = true
+}
 const onCloseModal = () => (modal.value = false)
+const onOpenTask = (id) => {
+  taskId.value = id
+  modal.value = true
+}
 
-const tasks = ref([
-  {
-    id: 'task-1',
-    title: 'Check emails',
-    date: '06/01/2023',
-    time: '13:00',
-    isCompleted: false,
-    status: 'Expired',
-  },
-  {
-    id: 'task-2',
-    title: 'Daily Exercise',
-    date: '06/01/2023',
-    time: '15:00',
-    isCompleted: false,
-    status: 'Expired',
-  },
-
-  {
-    id: 'task-3',
-    title: 'Reading Books',
-    date: '06/01/2023',
-    time: '13:00',
-    isCompleted: true,
-    status: 'Expired',
-  },
-  {
-    id: 'task-4',
-    title: 'Go Shopping',
-    date: '06/01/2023',
-    time: '15:00',
-    isCompleted: true,
-    status: 'Expired',
-  },
-])
+const foundTasks = computed(() => {
+  if (!taskStore.query) return []
+  return taskStore.searchTasks
+})
 </script>

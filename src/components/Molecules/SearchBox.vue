@@ -18,16 +18,28 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
 import { useNoteStore } from '@/stores/notes'
+import { useTaskStore } from '@/stores/tasks'
+import { useRoute } from 'vue-router'
+import { storeToRefs } from 'pinia'
 
+const route = useRoute()
 const searchQuery = ref('')
 
+const taskStore = useTaskStore()
+const path = computed(() => route.path)
+
+const { query } = storeToRefs(taskStore)
 const noteStore = useNoteStore()
 
 watch(searchQuery, (newQuery) => {
-  noteStore.setSearchQuery(newQuery)
+  if (path.value === '/') {
+    noteStore.setSearchQuery(newQuery)
+  } else {
+    query.value = newQuery
+  }
 })
 </script>

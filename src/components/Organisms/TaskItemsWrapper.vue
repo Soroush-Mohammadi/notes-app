@@ -8,6 +8,7 @@
       :date="task.date"
       :time="task.time"
       :isCompleted="task.isCompleted"
+      @click="openTask(task.id)"
     />
   </div>
 </template>
@@ -15,4 +16,7 @@
 <script setup>
 import TaskItem from '../Molecules/TaskItem.vue'
 const props = defineProps(['tasks'])
+const emit = defineEmits(['openTask'])
+
+const openTask = (id) => emit('openTask', id)
 </script>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 
 export const useNoteStore = defineStore('notes', () => {
   const notes = ref([
@@ -68,21 +68,16 @@ export const useNoteStore = defineStore('notes', () => {
     return notes.value.find((note) => note.id == id)
   }
 
-  const updateNote = (id, updatedFields) => {
+  const updateNote = (id, updateFields) => {
     const index = notes.value.findIndex((n) => n.id === parseInt(id))
     if (index !== -1) {
-      notes.value[index] = { ...notes.value[index], ...updatedFields }
+      notes.value[index] = { ...notes.value[index], ...updateFields }
     }
   }
 
   const addNote = (newNote) => {
     notes.value.push(newNote)
   }
-
-  watch(
-    () => notes,
-    (val) => console.log(val),
-  )
 
   return { notes, setSearchQuery, setCategory, filterNotes, findById, updateNote, addNote }
 })
