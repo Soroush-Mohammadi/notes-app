@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 grid-rows-5 gap-4 max-h-screen min-h-screen">
+  <div class="grid grid-rows-5 min-h-screen sm:max-h-screen md:grid-cols-2 md:grid-rows-5">
     <router-link v-for="note in noteStore.filterNotes" :key="note.id" :to="`/notes/${note.id}`">
       <note-item :title="note.title" :body="note.body" :date="note.date" class="cursor-pointer" />
     </router-link>

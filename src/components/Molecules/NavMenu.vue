@@ -3,7 +3,7 @@
     <li
       v-for="cat in categories"
       :key="cat.id"
-      class="px-4 py-2 cursor-pointer rounded-lg"
+      class="text-xs px-4 py-2 cursor-pointer rounded-lg sm:text-base"
       @click="selectCategory(cat.name)"
       :class="{ 'bg-indigo-400 text-white': selectedCategory === cat.name }"
     >

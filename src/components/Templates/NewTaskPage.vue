@@ -2,7 +2,7 @@
   <div class="fixed inset-0 bg-black/50 z-55 flex justify-center items-center" @click="closeModal">
     <div
       v-if="!datePicker"
-      class="min-w-[420px] h-60 bg-white grid grid-rows-[1fr_auto_auto] rounded-md p-2"
+      class="min-w-90 h-60 bg-white grid grid-rows-[1fr_auto_auto] rounded-md p-2"
       @click.stop
     >
       <div class="row flex gap-4 p-4 items-start">

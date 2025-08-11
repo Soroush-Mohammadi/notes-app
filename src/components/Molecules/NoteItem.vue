@@ -1,6 +1,8 @@
 <template>
-  <div class="bg-indigo-600 text-white rounded-xl p-3 min-h-[150px]">
-    <h1 class="text-xl my-2">
+  <div
+    class="bg-indigo-600 text-white rounded-xl p-3 text-xs max-h-30 sm:max-h-40 md:max-w-60 md:text-sm"
+  >
+    <h1 class="my-2">
       {{ props.title }}
     </h1>
     <p class="my-2">{{ props.body }}</p>

@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col justify-between p-4 h-3/4 m-auto gap-2 bg-indigo-100 rounded-md">
+  <div
+    class="max-w-3/4 flex flex-col justify-between p-4 h-3/4 m-auto gap-2 bg-indigo-100 rounded-md"
+  >
     <div class="row">
       <VueDatePicker v-model="date" timePickerInline />
     </div>
