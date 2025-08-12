@@ -69,7 +69,7 @@ export const useNoteStore = defineStore('notes', () => {
   }
 
   const updateNote = (id, updateFields) => {
-    const index = notes.value.findIndex((n) => n.id === parseInt(id))
+    const index = notes.value.findIndex((n) => n.id === id)
     if (index !== -1) {
       notes.value[index] = { ...notes.value[index], ...updateFields }
     }

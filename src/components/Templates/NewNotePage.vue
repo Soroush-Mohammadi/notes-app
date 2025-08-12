@@ -79,25 +79,30 @@ const noteHasChanged = computed(() => {
   )
 })
 
+//new
 const { generateId } = useRandomId()
 
 watch(
   orginalNote,
   (val) => {
     if (val) {
-      editedNote.title = val.title
-      editedNote.body = val.body
-      editedNote.category = val.category
-      editedNote.date = currentDate.value
-      editedNote.time = currentTime.value
-      editedNote.id = val.id
+      Object.assign(editedNote, {
+        title: val.title,
+        body: val.body,
+        category: val.category,
+        date: val.date,
+        time: val.time,
+        id: val.id,
+      })
     } else {
-      editedNote.title = ''
-      editedNote.body = ''
-      editedNote.category = ''
-      editedNote.date = currentDate.value
-      editedNote.time = currentTime.value
-      editedNote.id = generateId()
+      Object.assign(editedNote, {
+        title: '',
+        body: '',
+        category: '',
+        date: currentDate.value,
+        time: currentTime.value,
+        id: generateId(),
+      })
     }
   },
   { immediate: true },
